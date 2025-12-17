@@ -7,7 +7,7 @@ import LinkButton from '../layout/LinkButton';
 import ProjectCard from '../project/ProjectCard';
 import styles from './Projects.module.css';
 function Projects() {
-  const [projects, setProjects] = useState([]);
+  const [projects] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
   const location = useLocation();
   let message = '';
@@ -30,6 +30,20 @@ function Projects() {
         .catch((err) => console.log(err));
     }, 300);
   }, []);
+  function removeProject(id) {
+    fetch('http://localhost:5000/projects/${id}', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setProjects(projects.filter((project) => project.id !== id));
+        //message
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div className={styles.project_container}>
@@ -47,6 +61,7 @@ function Projects() {
               name={project.name}
               budget={project.budget}
               category={project.category}
+              handleRemove={removeProject}
             />
           ))}
         {!removeLoading && <Loading />}
