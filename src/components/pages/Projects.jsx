@@ -7,8 +7,9 @@ import LinkButton from '../layout/LinkButton';
 import ProjectCard from '../project/ProjectCard';
 import styles from './Projects.module.css';
 function Projects() {
-  const [projects] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
+  const [projectMessage, setProjectMessage] = useState('');
   const location = useLocation();
   let message = '';
   if (location.state) {
@@ -31,7 +32,7 @@ function Projects() {
     }, 300);
   }, []);
   function removeProject(id) {
-    fetch('http://localhost:5000/projects/${id}', {
+    fetch(`http://localhost:5000/projects/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ function Projects() {
       .then((resp) => resp.json())
       .then((data) => {
         setProjects(projects.filter((project) => project.id !== id));
-        //message
+        setProjectMessage('Projeto removido com sucesso!');
       })
       .catch((err) => console.log(err));
   }
@@ -52,6 +53,7 @@ function Projects() {
         <LinkButton to="/newproject" text="Criar Projeto" />
       </div>
       {message && <Message type={'Sucess'} msg={message} />}
+      {projectMessage && <Message type={'Sucess'} msg={projectMessage} />}
       <Container customClass="start">
         {projects.length > 0 &&
           projects.map((project) => (
