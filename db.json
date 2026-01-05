@@ -1,8 +1,8 @@
 {
   "projects": [
     {
-      "name": "Luna",
-      "budget": "30000",
+      "name": "Luna menina ",
+      "budget": "31000",
       "category": {
         "id": "1",
         "name": "Infra"
@@ -12,22 +12,22 @@
       "id": 3
     },
     {
-      "name": "Bigood",
-      "budget": "17000",
+      "name": "Bigood ",
+      "budget": "7000",
       "category": {
-        "id": "3",
-        "name": "Design"
+        "id": "2",
+        "name": "Desenvolvimento"
       },
       "cost": 0,
       "services": [],
       "id": 4
     },
     {
-      "name": "Duda",
-      "budget": "18000",
+      "name": "Duda alterado",
+      "budget": "2000",
       "category": {
-        "id": "4",
-        "name": "Planejamento"
+        "id": "3",
+        "name": "Design"
       },
       "cost": 0,
       "services": [],
